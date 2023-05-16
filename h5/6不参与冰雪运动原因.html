@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="height: 100%; margin: 0; overflow: hidden">
+<div id="container" style="height: 100%"></div>
+
+<script type="text/javascript" src="https://cdn.staticfile.org/echarts/5.4.0/echarts.min.js"></script>
+
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom, null, {
+        renderer: "canvas",
+        useDirtyRect: false,
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+        title: {
+            text: "不参与冰雪运动原因",
+            left: "center",
+        },
+        grid: {
+            left: "3%",
+            right: "4%",
+            bottom: "3%",
+            containLabel: true,
+        },
+        tooltip: {
+            trigger: "item",
+            position: "inside",
+        },
+        legend: {
+            orient: "horizontal",
+            x: "center",
+            y: "bottom",
+        },
+        series: [
+            {
+                type: "pie",
+                radius: ["40%", "70%"],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: "center",
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: 20,
+                        fontWeight: "bold",
+                    },
+                },
+                labelLine: {
+                    show: false,
+                },
+                data: [
+                    {value: 82, name: "危险性较高，害怕受伤"},
+                    {value: 52, name: "对冰雪运动提不起兴趣"},
+                    {value: 116, name: "没有类似经验，不敢尝试"},
+                    {value: 71, name: "所在地没有参与冰雪运动的环境与设施"},
+                    {value: 31, name: "没有参与冰雪运动的条件"},
+                ],
+            },
+        ],
+    };
+
+    if (option && typeof option === "object") {
+        myChart.setOption(option);
+    }
+
+    window.addEventListener("resize", myChart.resize);
+</script>
+</body>
+</html>

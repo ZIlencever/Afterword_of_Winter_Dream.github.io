@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="height: 100%; margin: 0; overflow: hidden">
+<div id="container" style="height: 100%"></div>
+
+<script type="text/javascript" src="https://cdn.staticfile.org/echarts/5.4.0/echarts.min.js"></script>
+
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom, null, {
+        renderer: "canvas",
+        useDirtyRect: false,
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+        title: {
+            text: "对2022冬奥会的关注",
+            left: "center",
+        },
+        tooltip: {
+            trigger: "item",
+            position: "inside",
+        },
+        legend: {
+            orient: "vertical",
+            x: "center",
+            y: "bottom",
+        },
+        name: {
+            left: "right",
+        },
+
+        grid: {
+            left: "3%",
+            right: "4%",
+            bottom: "3%",
+            containLabel: true,
+        },
+
+        series: [
+            {
+                type: "pie",
+                radius: "40%",
+                data: [
+                    {value: 267, name: "观看大量直播赛事，主动检索冬奥信息"},
+                    {value: 257, name: "从移动端获取冬奥信息"},
+                    {value: 116, name: "没有主动关注但是会从各类平台看到相关信息"},
+                    {value: 10, name: "不关注也不太关心"},
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                },
+            },
+        ],
+    };
+
+    if (option && typeof option === "object") {
+        myChart.setOption(option);
+    }
+
+    window.addEventListener("resize", myChart.resize);
+</script>
+</body>
+</html>

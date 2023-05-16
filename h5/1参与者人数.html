@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="height: 100%; margin: 0; overflow: hidden">
+<div id="container" style="height: 100%; width: 100%"></div>
+
+<script type="text/javascript" src="https://cdn.staticfile.org/echarts/5.4.0/echarts.min.js"></script>
+
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom, null, {
+        renderer: "canvas",
+        useDirtyRect: false,
+    });
+    var app = {};
+
+    var option;
+
+    option = {
+        title: {
+            text: "冰雪运动调查问卷",
+            subtext: "冰雪运动参与人数",
+            left: "center",
+        },
+        tooltip: {
+            trigger: "item",
+            position: "inside",
+        },
+        legend: {
+            orient: "horizontal",
+            x: "center",
+            y: "bottom",
+        },
+        series: [
+            {
+                type: "pie",
+                radius: "50%",
+                data: [
+                    {value: 650, name: "冰雪运动参与者"},
+                    {value: 352, name: "非冰雪运动参与者"},
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                },
+            },
+        ],
+    };
+
+    if (option && typeof option === "object") {
+        myChart.setOption(option);
+    }
+
+    window.addEventListener("resize", myChart.resize);
+</script>
+</body>
+</html>
